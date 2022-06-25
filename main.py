@@ -1,4 +1,5 @@
 import copy
+import timeit
 
 
 class CountTrees:
@@ -7,6 +8,9 @@ class CountTrees:
         self.days = number_of_days
 
     def count_trees_loop(self):
+        if self.days > 120:
+            print("This might take a while.. Please consider commenting out this function for faster results.")
+
         number_of_new_trees = 0
         tree_list = copy.deepcopy(self.trees)
 
@@ -43,5 +47,6 @@ days = 120
 trees = [3, 1, 1, 5, 2]
 
 counter = CountTrees(trees, days)
-counter.count_trees_dict()
-counter.count_trees_loop()
+
+print(timeit.timeit(counter.count_trees_dict, number=1))
+print(timeit.timeit(counter.count_trees_loop, number=1))
