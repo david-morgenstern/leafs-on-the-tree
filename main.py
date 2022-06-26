@@ -29,6 +29,8 @@ class CountTrees:
 
     def count_trees_dict(self):
         leaf_count = {i: self.trees.count(i) for i in range(9)}
+        last_key = sorted(leaf_count.keys())[-1]
+
         prev = 0
 
         for day in range(self.days):
@@ -36,14 +38,14 @@ class CountTrees:
                 temp = prev
                 prev = leaf_count[i]
                 leaf_count[i] = temp
-                if i == 8:
+                if i == last_key:
                     leaf_count[0] += leaf_count[8]
                     leaf_count[2] += leaf_count[8]
-                    leaf_count[8] = 0
+                    leaf_count[last_key] = 0
         print(sum(leaf_count.values()))
 
 
-days = 120
+days = 121
 trees = [3, 1, 1, 5, 2]
 
 counter = CountTrees(trees, days)
